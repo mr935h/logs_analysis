@@ -1,26 +1,34 @@
+#!/usr/bin/env python
+
+
 import psycopg2
 
 DBNAME = "news"
 
 # creates topThree view from log table and returns query to find the
 # top three articles based on views.
+
+
 def answer1():
-    db=psycopg2.connect(database=DBNAME)
-    c=db.cursor()
+    db = psycopg2.connect(database=DBNAME)
+    c = db.cursor()
     # answer to question 1
     c.execute("""create view topThree (path, num)
         as select substring(path, 10, length(path)),
         count(*) as num from log group by path order by num desc limit 4""")
     c.execute("""select articles.title, topThree.num from articles,
-        topThree where articles.slug = topThree.path order by topThree.num desc""")
+        topThree where articles.slug = topThree.path
+        order by topThree.num desc""")
     return c.fetchall()
     db.close()
 
 # creates pathViews and authorViews views from log, articles, and authors table
 # and returns the top three authors based on views.
+
+
 def answer2():
-    db=psycopg2.connect(database=DBNAME)
-    c=db.cursor()
+    db = psycopg2.connect(database=DBNAME)
+    c = db.cursor()
     c.execute("""create view pathViews (path, num)
         as select substring(path,10, length(path)),
         count(*) as num from log group by path order by num desc""")
@@ -36,9 +44,11 @@ def answer2():
 
 # creates errorViews and allViews views from log table and returns
 # which date(s) resulted in > than 1 percent errors.
+
+
 def answer3():
-    db=psycopg2.connect(database=DBNAME)
-    c=db.cursor()
+    db = psycopg2.connect(database=DBNAME)
+    c = db.cursor()
     c.execute("""create view errorViews (time, num)
         as select to_char(time,'Mon, DD YYYY'),
         count(*) from log where status != '200 OK'
