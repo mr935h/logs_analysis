@@ -2,7 +2,8 @@ import psycopg2
 
 DBNAME = "news"
 
-
+# creates topThree view from log table and returns query to find the
+# top three articles based on views.
 def answer1():
     db=psycopg2.connect(database=DBNAME)
     c=db.cursor()
@@ -15,6 +16,8 @@ def answer1():
     return c.fetchall()
     db.close()
 
+# creates pathViews and authorViews views from log, articles, and authors table
+# and returns the top three authors based on views.
 def answer2():
     db=psycopg2.connect(database=DBNAME)
     c=db.cursor()
@@ -31,6 +34,8 @@ def answer2():
     return c.fetchall()
     db.close()
 
+# creates errorViews and allViews views from log table and returns
+# which date(s) resulted in > than 1 percent errors.
 def answer3():
     db=psycopg2.connect(database=DBNAME)
     c=db.cursor()
