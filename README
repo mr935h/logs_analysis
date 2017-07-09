@@ -14,7 +14,7 @@ Getting Started
 -------------------------
 This project consists of these files: logs_analysis.py, create_views.sql, and news_data.sql. By running logs_analysis.py on the command line or terminal the program will print the answers to the above questions. Follow the steps below to set up database and run the program.
 
-The psql news database was set up on the vagrant virtual machine (https://www.vagrantup.com/). Once vagrant is installed the newsdata.sql, logs_analysis.py, and create_view.sql files included in this project should be added to the vagrant directory. To run the VM use commands 'vagrant up'; 'vagrant ssh'; 'cd /vagrant'. To load the data, use the command 'psql -d news -f newsdata.sql'.
+The psql news database was set up on the vagrant virtual machine (https://www.vagrantup.com/). Once vagrant is installed the newsdata.sql (https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip), logs_analysis.py, and create_view.sql files included in this project should be added to the vagrant directory. To run the VM use commands 'vagrant up'; 'vagrant ssh'; 'cd /vagrant'. To load the data, use the command 'psql -d news -f newsdata.sql'.
 
 Once the data is loaded into your database, the tables and database schema can be found by connecting to your database using command 'psql -d news' and '\dt' to display the tables and '\d <name of table>' to show the schema for that table. To exit the database type exit (or Ctrl-D) at the shell prompt inside the VM, you will be logged out, and put back into your host computer's shell
 
