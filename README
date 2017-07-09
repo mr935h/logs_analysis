@@ -1,4 +1,5 @@
 Logs Analysis
+-------------------------
 Uses SQL to answer the following questions based on the information found on the PostgreSQL database news.
 
     1. What are the most popular three articles of all time? Which articles have been accessed the most? Present this information as a sorted list with the most popular article at the top.
@@ -7,10 +8,17 @@ Uses SQL to answer the following questions based on the information found on the
 
     3. On which days did more than 1% of requests lead to errors?
 
-Getting Started
-This project consists of these files: logs_analysis.py and create_views.sql. By running logs_analysis.py on the command line or terminal the program will print the answers to the above questions.
+The news data base contains tables: articles, authors, and logs. These tables track the authors, articles, and traffic to the site.
 
-create_views.sql contains the following views: topThree, pathViews, authorViews, errorViews, and allViews. These were created with the following statements:
+Getting Started
+-------------------------
+This project consists of these files: logs_analysis.py, create_views.sql, and news_data.sql. By running logs_analysis.py on the command line or terminal the program will print the answers to the above questions. Follow the steps below to set up database and run the program.
+
+The psql news database was set up on the vagrant virtual machine (https://www.vagrantup.com/). Once vagrant is installed the newsdata.sql, logs_analysis.py, and create_view.sql files included in this project should be added to the vagrant directory. To run the VM use commands 'vagrant up'; 'vagrant ssh'; 'cd /vagrant'. To load the data, use the command 'psql -d news -f newsdata.sql'.
+
+Once the data is loaded into your database, the tables and database schema can be found by connecting to your database using command 'psql -d news' and '\dt' to display the tables and '\d <name of table>' to show the schema for that table. To exit the database type exit (or Ctrl-D) at the shell prompt inside the VM, you will be logged out, and put back into your host computer's shell
+
+create_views.sql contains the following views: topThree, pathViews, authorViews, errorViews, and allViews. To create these views use command 'psql -d news -f create_views.sql' from within the VM. These were created with the following statements:
 
     create view topThree (path, num) as select
         substring(path,10, length(path)), count(*) as num
@@ -35,10 +43,12 @@ create_views.sql contains the following views: topThree, pathViews, authorViews,
         from log group by to_char(time,'Mon, DD YYYY');
 
 Prerequisites
+-------------------------
 Python
 Access to the PostgreSQL database news
 
 
 Authors
+-------------------------
 Michael Ryden
 

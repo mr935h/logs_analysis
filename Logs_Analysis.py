@@ -23,7 +23,7 @@ topThree = c.fetchall()
 print "Top 3 Articles by Views"
 print "--------------------------------"
 for i in topThree:
-    print i[0], '-', i[1] , "views"
+    print i[0], '-', i[1], "views"
 
 
 # pulls and prints which three authors have been viewed the most
@@ -37,7 +37,7 @@ print
 print "Top Authors by Views"
 print "--------------------------------"
 for i in topAuthors:
-    print i[0], '-', i[1] , "views"
+    print i[0], '-', i[1], "views"
 
 
 # pulls and prints which date resulted in > 1 percent errors
@@ -52,6 +52,6 @@ print
 print "Days When Errors > than 1%"
 print "--------------------------------"
 for i in oneDayErrors:
-    print i[0], "-", round(float(i[1]) / float(i[2]) * 100,1), "% errors"
+    print i[0], "-", round(float(i[1]) / float(i[2]) * 100, 1), "% errors"
 
 db.close
